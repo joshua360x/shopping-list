@@ -24,7 +24,7 @@ export default function ListPage() {
     // delete all items
     await deleteAllItems();
     // then call your fetchItems function to fetch and re-display
-    await fetchItems;
+    await fetchItems();
   }
 
   return (
