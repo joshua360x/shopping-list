@@ -7,6 +7,11 @@ export default function ListPage() {
   const [listItems, setShoppingList] = useState([]);
 
   // on load, call the fetchItems function (remember: useEffect)
+  useEffect(() => {
+    async function onLoad() {
+      
+    }
+  }, [])
 
   async function fetchItems() {
     // fetch the list items and inject them into state
