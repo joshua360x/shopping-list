@@ -3,39 +3,61 @@ import { createListItem } from './services/fetch-utils';
 
 export default function ListItemForm({ fetchItems }) {
   // you'll need to track the name and quantity in state
+  const [quantity, setQuantity] = useState('');
+  const [name, setName] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
+
     // make a new list item in supabase using the form values stored in state
+    const listItem = {
+      quantity,
+      name,
+    };
+
+    await createListItem(listItem);
 
     // refetch the items using the handler functionpassed down as a prop
 
+    await fetchItems();
+
     // clear the name and quantity in state to refresh the form
+    // setName('');
+    // setQuantity('');
+    // clearForm();
+  }
+
+  function clearForm() {
+    document.getElementById('formList').reset();
   }
 
   return (
-    <div className='new-item-form-container'>
+    <div className="new-item-form-container">
       {/* on submit, call the handleSubmit function */}
-      <form>
-          I need . . . 
+      <form id="formList" onSubmit={handleSubmit}>
+        I need . . .
         <label>
-            Quantity
+          Quantity
           {/* on change, update the quantity in state */}
-          <input 
+          <input
             // this should be a controlled input, soi set the value based on state
-            required 
-            type="number" 
+            value={quantity}
+            onChange={e => setQuantity(e.target.value)}
+            required
+            type="number"
             name="quantity"
           />
         </label>
         <label>
-            Name
+          Name
           {/* on change, update the name in state */}
           <input
-            // this should be a controlled input, soi set the value based on state 
-            required 
-            name="name" />
+            // this should be a controlled input, soi set the value based on state
+            value={name}
+            onChange={e => setName(e.target.value)}
+            required
+            name="name"
+          />
         </label>
         <button>Add item</button>
       </form>
