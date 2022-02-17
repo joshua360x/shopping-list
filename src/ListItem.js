@@ -8,15 +8,12 @@ export default function ListItem({ fetchItems, listItem }) {
     await fetchItems();
   }
 
-  function hasBeenBough() {
-    
-  }
 
 //  () => {} is javascript for "do nothing". It's an arrow function that doesn't nothing at all.
   return (
     // on click, if it's already been bought, do nothing; otherwise, call the handleClick function
     <div className='list-item' onClick={
-      listItem.has_been_bought ? () => {console.log('you have bought', listItem.name);} : handleClick
+      listItem.has_been_bought ? () => {} : handleClick
     }>
       {/* if it's been bought, this p tag should have the 'bought' class. Otherwise it should have the 'needed' class */}
       <p className={listItem.has_been_bought ? 'bought' : 'needed'}>
